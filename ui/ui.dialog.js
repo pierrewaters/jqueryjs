@@ -16,61 +16,26 @@
  */
 ;(function($) {
 	
+	var setDataSwitch = {
+		"dragStart": "start.draggable",
+		"drag": "drag.draggable",
+		"dragStop": "stop.draggable",
+		"maxHeight": "maxHeight.resizable",
+		"minHeight": "minHeight.resizable",
+		"maxWidth": "maxWidth.resizable",
+		"minWidth": "minWidth.resizable",
+		"resizeStart": "start.resizable",
+		"resize": "drag.resizable",
+		"resizeStop": "stop.resizable"
+	};
+	
 	$.widget("ui", "dialog", {
 		init: function() {
 			var self = this;
 			var options = this.options;
-
-			$(this.element).bind("remove", function() {
-				self.destroy();
-			});
 			
-			$(this.element).bind("setData.dialog", function(event, key, value){
-				switch (key) {
-					case "draggable":
-						uiDialog.draggable(value ? 'enable' : 'disable');
-						break;
-					case "dragStart":
-						uiDialog.data('start.draggable', value);
-						break;
-					case "drag":
-						uiDialog.data('drag.draggable', value);
-						break;
-					case "dragStop":
-						uiDialog.data('stop.draggable', value);
-						break;
-					case "height":
-						uiDialog.height(value);
-						break;
-					case "maxHeight":
-					case "minHeight":
-					case "maxWidth":
-					case "minWidth":
-						uiDialog.data(key + ".resizable", value);
-						break;
-					case "position":
-						self.position(value);
-						break;
-					case "resizable":
-						uiDialog.resizable(value ? 'enable' : 'disable');
-						break;
-					case "resizeStart":
-						uiDialog.data('start.resizable', value);
-						break;
-					case "resize":
-						uiDialog.data('resize.resizable', value);
-						break;
-					case "resizeStop":
-						uiDialog.data('stop.resizable', value);
-						break;
-					case "title":
-						$(".ui-dialog-title", uiDialogTitlebar).text(value);
-						break;
-					case "width":
-						uiDialog.width(value);
-						break;
-				}
-				options[key] = value;
+			var uiDialogContent = $(this.element).addClass('ui-dialog-content');
+					options[key] = value;
 			}).bind("getData.dialog", function(event, key){
 				return options[key];
 			});
@@ -118,7 +83,7 @@
 					}
 				});
 				if (!options.resizable)
-					uiDialog.resizable('disable');
+					uithis.uiDialogTitlebar = uiDialogTitlebar			uiDialog.resizable('disable');
 			}
 	
 			uiDialogContainer.prepend('<div class="ui-dialog-titlebar"></div>');
@@ -180,7 +145,32 @@
 			uiDialog.mousedown(function() {
 				self.activate();
 			});
-			uiDialogTitlebar.click(function() {
+			uiDialo	
+		setData: function(event, key, value){
+			setDataSwitch[key] && this.uiDialog.data(setDataSwitch[key], value);
+			switch (key) {
+				case "draggable":
+					this.uiDialog.draggable(value ? 'enable' : 'disable');
+					break;
+				case "height":
+					this.uiDialog.height(value);
+					break;
+				case "position":
+					this.position(value);
+					break;
+				case "resizable":
+					this.uiDialog.resizable(value ? 'enable' : 'disable');
+					break;
+				case "title":
+					$(".ui-dialog-title", this.uiDialogTitlebar).text(value);
+					break;
+				case "width":
+					this.uiDialog.width(value);
+					break;
+			}
+			this.options[key] = value;
+		},
+	ogTitlebar.click(function() {
 				self.activate();
 			});
 			
@@ -274,7 +264,7 @@
 			this.uiDialog.hide();
 
 			// CALLBACK: close
-			var closeEV = null;
+			var closeEV = nulll;
 			var closeUI = {
 				options: this.options
 			};
@@ -437,15 +427,4 @@
 				height: 0
 			}).css({
 				width: $.ui.dialog.overlay.width(),
-				height: $.ui.dialog.overlay.height()
-			});
-		}
-	});
-	
-	$.extend($.ui.dialog.overlay.prototype, {
-		destroy: function() {
-			$.ui.dialog.overlay.destroy(this.$el);
-		}
-	});
-
-})(jQuery);
+				heig
