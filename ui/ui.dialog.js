@@ -174,9 +174,7 @@
 				self.activate();
 			});
 			
-			options.bgiframe && $.fn.bgiframe && uiDialog.bgiframe();
-			
-			if (options.autoOpen) {
+			options.top = doc.scrollTop(), left = doc.scrollLeft(), minTop = top		if (options.autoOpen) {
 				this.open();
 			};
 		},
