@@ -218,7 +218,7 @@
 					default:
 						top += (wnd.height() / 2) - (this.uiDialog.height() / 2);
 				}
-			}
+this
 			top = top < minTop ? minTop : top;
 			this.uiDialog.css({top: top, left: left});
 		},
