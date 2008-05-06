@@ -268,13 +268,12 @@
 			var closeUI = {
 				options: this.options
 			};
-			$(this.element).triggerHandler("dialogclose", [closeEV, closeUI], this.options.close);
-			$.ui.dialog.overlay.resize();
-		},
-	
-		destroy: function() {
-			this.overlay && this.overlay.destroy();
-			this.uiDialog.hide();
+			$(this.element).triggerHandler("dialogclthis.element
+				.unbind('.dialog')
+				.removeData('dialog')
+				.removeClass('ui-dialog-content')
+				.hide().appendTo('body');
+			this.uiDialog.remove(this.uiDialog.hide();
 			$(this.element).unbind('.dialog').removeClass('ui-dialog-content').hide().appendTo('body');
 			this.uiDialog.remove();
 			$.removeData(this.element, "dialog");
