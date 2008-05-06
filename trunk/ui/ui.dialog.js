@@ -34,7 +34,7 @@
 			var self = this;
 			var options = this.options;
 			
-			var uiDialogContent = $(this.element).addClass('ui-dialog-content');
+			var uiDialogContent = this.element.addClass('ui-dialog-content');
 					options[key] = value;
 			}).bind("getData.dialog", function(event, key){
 				return options[key];
@@ -227,8 +227,7 @@
 			this.overlay = this.options.modal ? new $.ui.dialog.overlay(self) : null;
 			this.uiDialog.appendTo('body');
 			this.position(this.options.position);
-			this.uiDialog.show();
-			this.moveToTop();
+			this.uiDialog.show()this.elementoTop();
 			this.activate();
 			
 			// CALLBACK: open
@@ -259,8 +258,7 @@
 			this.uiDialog.css('z-index', ++maxZ);
 		},
 			
-		close: function() {
-			this.overlay && this.overlay.destroy();
+		close:this.element		this.overlay && this.overlay.destroy();
 			this.uiDialog.hide();
 
 			// CALLBACK: close
