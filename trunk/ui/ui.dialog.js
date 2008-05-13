@@ -301,23 +301,30 @@ this
 	
 	$.extend($.ui.dialog.overlay, {
 		instances: [],
-		events: $.map('focus,mousedown,mouseup,keydown,keypress,click'.split(','),
-			function(e) { return e + '.dialog-overlay'; }).join(' '),
-		create: function(dialog) {
-			if (this.instances.length === 0) {
-				// prevent use of anchors and inputs
-				$('a, :input').bind(this.events, function() {
-					// allow use of the element if inside a dialog and
-					// - there are no modal dialogs
-					// - there are modal dialogs, but we are in front of the topmost modal
-					var allow = false;
-					var $dialog = $(this).parents('.ui-dialog');
-					if ($dialog.length) {
-						var $overlays = $('.ui-dialog-overlay');
-						if ($overlays.length) {
-							var maxZ = parseInt($overlays.css('z-index'), 10);
-							$overlays.each(function() {
-								maxZ = Math.max(maxZ, parseInt($(this).css('z-index'), 10));
+		events: $.map('focus,mousedown,mouseup,keydown,keypress,click'.spl// we use a setTimeout in case the overlay is created from an
+				// event that we're going to be cancelling (see #2804)
+				setTimeout(function() {
+					$('a, :input').bind($.ui.dialog.overlay.events, function() {
+						// allow use of the element if inside a dialog and
+						// - there are no modal dialogs
+			// prevent use of anchors and inputs
+				$('a, :input').bind(this.events, funct	var allow = false;
+						var $dialog = $(this).parents('.ui-dialog');
+						if ($dialog.length) {
+							var $overlays = $('.ui-dialog-overlay');
+							if ($overlays.length) {
+								var maxZ = parseInt($overlays.css('z-index'), 10);
+								$overlays.each(function() {
+									maxZ = Math.max(maxZ, parseInt($(this).css('z-index'), 10));
+								});
+								allow = parseInt($dialog.css('z-index'), 10) > maxZ;
+							} else {
+								allow = true;
+							}
+						}
+						return allow;
+					});
+				}, 1seInt($(this).css('z-index'), 10));
 							});
 							allow = parseInt($dialog.css('z-index'), 10) > maxZ;
 						} else {
