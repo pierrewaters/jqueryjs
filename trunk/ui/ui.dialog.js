@@ -174,45 +174,52 @@
 				self.activate();
 			});
 			
-			options.top = doc.scrollTop(), left = doc.scrollLeft(), minTop = top		if (options.autoOpen) {
-				this.open();
-			};
-		},
-	
-		position: function(pos) {
-			var wnd = $(window), doc = $(document), minTop = top = doc.scrollTop(), left = doc.scrollLeft();
+			options
+				pTop = doc.scrollTop(), pLeft = doc.scrollLeft(),
+				minTop = pTop;
+			
 			if ($.inArray(pos, ['center','top','right','bottom','left']) >= 0) {
-				pos = [pos == 'right' || pos == 'left' ? pos : 'center', pos == 'top' || pos == 'bottom' ? pos : 'middle'];
+				pos = [
+					pos == 'right' || pos == 'left' ? pos : 'center',
+					pos == 'top' || pos == 'bottom' ? pos : 'middle'
+				
+			if ($.inArray(pos, ['center','top','right','bottom','left']) >= 0) {
+				pos = [pos == 'right' || pos == 'left' ? pos :pL'center', pos == 'top' || pos == 'bottom' ? pos : 'middle'];
 			}
-			if (pos.constructor != Array) {
-				pos == ['center', 'middle']
+			if (pLeft += 0;
+						break;
+					case 'right':
+						pL'middle']
 			}
 			if (pos[0].constructor == Number) {
 				left += pos[0];
 			} else {
-				switch (pos[0]) {
+				switch (pospL0]) {
 					case 'left':
 						left += 0;
 						break;
 					case 'right':
-						left += (wnd.width()) - (this.uiDialog.width());
-						break;
-					case 'center':
-					default:
-						left += (wnd.width() / 2) - (this.uiDialog.width() / 2);
-				}
-			}
-			if (pos[1].constructor == Number) {
-				top += pos[1];
+						left += (wnd.width()) - (this.upTop += pos[1];
 			} else {
 				switch (pos[1]) {
 					case 'top':
-						top += 0;
+						pTop += 0;
 						break;
 					case 'bottom':
-						top += (wnd.height()) - (this.uiDialog.height());
+						pTop += (wnd.height()) - (this.uiDialog.height());
 						break;
 					case 'middle':
+					default:
+						pTop += (wnd.height() / 2) - (this.uiDialog.height() / 2);
+				}
+			}
+			
+			// prevent the dialog from being too high (make sure the titlebar
+			// is accessible)
+			pTop = Math.max(pTop, minTop);
+			this.uiDialog.css({top: pTop, left: pLeft});
+		},
+':
 					default:
 						top += (wnd.height() / 2) - (this.uiDialog.height() / 2);
 				}
